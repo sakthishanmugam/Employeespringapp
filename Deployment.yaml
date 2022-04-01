@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: my-application
-          image: public.ecr.aws/q0r5o2b3/deploy-ecr:latest
+          image: public.ecr.aws/q0r5o2b3/k8s-deploy:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
