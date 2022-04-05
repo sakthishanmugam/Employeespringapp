@@ -20,4 +20,25 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-           
+---------------------------------------------------------------------------------------   
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image:  public.ecr.aws/d7p5a0c0/k8s-deploy:latest
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
